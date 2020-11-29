@@ -8,8 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Column;
 
 @Entity
-@Table(name = "master")
-public class Master {
+@Table(name = "admin")
+public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -21,14 +21,22 @@ public class Master {
     @Column(name = "lastName")
     private String lastName;
 
-    public Master() {
+    @Column(name = "login", unique = true, nullable = false)
+    private String login;
+
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    public Admin() {
 
     }
 
-    public Master(long id, String firstName, String lastName) {
+    public Admin(long id, String firstName, String lastName, String login, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.login = login;
+        this.password = password;
     }
 
     public long getId() {
@@ -43,6 +51,14 @@ public class Master {
         return lastName;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -53,5 +69,13 @@ public class Master {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
