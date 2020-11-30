@@ -9,12 +9,15 @@ import javax.persistence.Column;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "order")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
@@ -25,6 +28,9 @@ public class Order {
     @ManyToOne(targetEntity = OrderStatus.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "statusId")
     private OrderStatus status;
+
+    @ManyToMany(mappedBy = "orders")
+    private Set<Master> masters = new HashSet<>();
 
     public Order() {
 

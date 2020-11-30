@@ -6,12 +6,18 @@ import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
+import javax.persistence.ManyToMany;
+import javax.persistence.CascadeType;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "master")
 public class Master {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
@@ -20,6 +26,14 @@ public class Master {
 
     @Column(name = "lastName")
     private String lastName;
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "master_order",
+            joinColumns = { @JoinColumn(name = "masterId") },
+            inverseJoinColumns = { @JoinColumn(name = "orderId") }
+    )
+    private Set<Order> orders = new HashSet<>();
 
     public Master() {
 
@@ -43,6 +57,10 @@ public class Master {
         return lastName;
     }
 
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -53,5 +71,9 @@ public class Master {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 }
