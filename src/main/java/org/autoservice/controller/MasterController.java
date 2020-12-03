@@ -46,7 +46,7 @@ public class MasterController {
         masterDto.setId(id);
         masterService.update(masterDto);
 
-        return ResponseEntity.ok().body("Master was deleted");
+        return ResponseEntity.ok().body("Master was updated");
     }
 
     @RequestMapping(value = "/master/{id}", method = RequestMethod.GET)
