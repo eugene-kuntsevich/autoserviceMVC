@@ -15,14 +15,17 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.12</maven.compiler.source>
+    <maven.compiler.target>1.12</maven.compiler.target>
     <hibernate-jpa-version>1.0.2.Final</hibernate-jpa-version>
     <hibernate-version>5.4.24.Final</hibernate-version>
     <hibernate-validator-version>6.1.6.Final</hibernate-validator-version>
     <mysql-connector-version>8.0.22</mysql-connector-version>
     <liquibase-version>4.2.0</liquibase-version>
-    <spring-version>5.2.9.RELEASE</spring-version>
+    <spring-version>5.3.1</spring-version>
+    <servlet-version>4.0.1</servlet-version>
+    <jackson-version>2.12.0 </jackson-version>
+    <mapper-version>2.3.9</mapper-version>
   </properties>
 
   <dependencies>
@@ -82,6 +85,58 @@
       <version>${liquibase-version}</version>
     </dependency>
 
+    <!-- SPRING -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${spring-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>${spring-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>${spring-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <version>${spring-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-orm</artifactId>
+      <version>${spring-version}</version>
+    </dependency>
+
+    <!-- SERVLET -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>${servlet-version}</version>
+    </dependency>
+
+    <!-- JACKSON -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson-version}</version>
+    </dependency>
+
+    <!-- MAPPER -->
+    <dependency>
+      <groupId>org.modelmapper</groupId>
+      <artifactId>modelmapper</artifactId>
+      <version>${mapper-version}</version>
+    </dependency>
   </dependencies>
 
   <build>

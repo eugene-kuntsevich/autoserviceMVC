@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.ManyToMany;
 import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import java.util.HashSet;
@@ -27,9 +28,9 @@ public class Master {
     @Column(name = "lastName")
     private String lastName;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     @JoinTable(
-            name = "master_order",
+            name = "Master_Order",
             joinColumns = { @JoinColumn(name = "masterId") },
             inverseJoinColumns = { @JoinColumn(name = "orderId") }
     )

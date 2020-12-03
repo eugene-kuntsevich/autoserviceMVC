@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "order")
+@Table(name = "`order`")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,6 +54,10 @@ public class Order {
         return status;
     }
 
+    public Set<Master> getMasters() {
+        return masters;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -64,5 +68,9 @@ public class Order {
 
     public void setStatus(OrderStatus status) {
         this.status = status;
+    }
+
+    public void setMasters(Set<Master> masters) {
+        this.masters = masters;
     }
 }
