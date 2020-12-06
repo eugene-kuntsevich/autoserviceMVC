@@ -2,6 +2,7 @@ package org.autoservice.controller;
 
 import org.autoservice.service.api.MasterService;
 import org.autoservice.service.dto.MasterDto;
+import org.autoservice.service.exception.ValidatorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +30,7 @@ public class MasterController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<?> save(@RequestBody MasterDto masterDto) {
+    public ResponseEntity<?> save(@RequestBody MasterDto masterDto) throws ValidatorException {
         masterService.saveOrUpdate(masterDto);
 
         return ResponseEntity.ok().body("New master added");
@@ -43,7 +44,7 @@ public class MasterController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody MasterDto masterDto) {
+    public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody MasterDto masterDto) throws ValidatorException {
         masterDto.setId(id);
         masterService.saveOrUpdate(masterDto);
 
