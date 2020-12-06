@@ -31,8 +31,7 @@ public class Admin {
 
     }
 
-    public Admin(long id, String firstName, String lastName, String login, String password) {
-        this.id = id;
+    public Admin(String firstName, String lastName, String login, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;

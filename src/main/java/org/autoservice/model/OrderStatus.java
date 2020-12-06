@@ -22,8 +22,7 @@ public class OrderStatus {
 
     }
 
-    public OrderStatus(long id, String name) {
-        this.id = id;
+    public OrderStatus(String name) {
         this.name = name;
     }
 

@@ -36,8 +36,7 @@ public class Order {
 
     }
 
-    public Order(long id, Client client, OrderStatus status) {
-        this.id = id;
+    public Order(Client client, OrderStatus status) {
         this.client = client;
         this.status = status;
     }

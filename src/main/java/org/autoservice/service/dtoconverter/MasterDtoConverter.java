@@ -12,7 +12,6 @@ import java.util.Set;
 
 @Service
 public class MasterDtoConverter extends AbstractDtoConverter<Master, MasterDto> {
-    @Autowired
     private OrderDtoConverter orderDtoConverter;
 
     public MasterDtoConverter() {
@@ -34,5 +33,10 @@ public class MasterDtoConverter extends AbstractDtoConverter<Master, MasterDto> 
         masterDto.setOrders(orderDtos);
 
         return masterDto;
+    }
+
+    @Autowired
+    public void setOrderDtoConverter(OrderDtoConverter orderDtoConverter) {
+        this.orderDtoConverter = orderDtoConverter;
     }
 }

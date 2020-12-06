@@ -40,8 +40,7 @@ public class Master {
 
     }
 
-    public Master(long id, String firstName, String lastName) {
-        this.id = id;
+    public Master(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

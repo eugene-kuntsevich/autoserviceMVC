@@ -33,8 +33,7 @@ public class Car {
 
     }
 
-    public Car(long id, String carNumber, Timestamp warrantyDate, Client client) {
-        this.id = id;
+    public Car(String carNumber, Timestamp warrantyDate, Client client) {
         this.carNumber = carNumber;
         this.warrantyDate = warrantyDate;
         this.client = client;

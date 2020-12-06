@@ -24,15 +24,9 @@ public abstract class AbstractService<T, Dto> implements GenericService<T, Dto> 
     }
 
     @Override
-    public void save(Dto dto) {
+    public void saveOrUpdate(Dto dto) {
         T entity = (T) abstractDtoConverter.convertToEntity(dto);
-        genericDao.save(entity);
-    }
-
-    @Override
-    public void update(Dto dto) {
-        T entity = (T) abstractDtoConverter.convertToEntity(dto);
-        genericDao.update(entity);
+        genericDao.saveOrUpdate(entity);
     }
 
     @Override

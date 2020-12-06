@@ -6,6 +6,9 @@ import org.autoservice.model.Master;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
@@ -16,9 +19,16 @@ public class MasterDaoImpl extends AbstractDao<Master> implements MasterDao {
 
     @Override
     public List<Master> getFreeMasters() {
-        final String hql = "from Master mstr where mstr.orders.size = 0 ";
-        TypedQuery<Master> query = sessionFactory.getCurrentSession().createQuery(hql);
+        CriteriaBuilder criteriaBuilder = sessionFactory.getCurrentSession().getCriteriaBuilder();
+        CriteriaQuery<Master> criteriaQuery = criteriaBuilder.createQuery(Master.class);
+        Root<Master> rootEntry = criteriaQuery.from(Master.class);
 
-        return query.getResultList();
+        CriteriaQuery<Master> free =
+                criteriaQuery.select(rootEntry)
+                        .where(criteriaBuilder.isEmpty(rootEntry.get("orders")));
+
+        TypedQuery<Master> freeMastersQuery = sessionFactory.getCurrentSession().createQuery(free);
+
+        return freeMastersQuery.getResultList();
     }
 }

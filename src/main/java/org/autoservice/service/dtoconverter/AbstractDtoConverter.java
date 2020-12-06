@@ -29,7 +29,7 @@ public abstract class AbstractDtoConverter<T, Dto> {
 
     public List<Dto> convertListToDto(List<T> tList) {
         return tList.stream()
-                .map(source -> convertToDto(source))
+                .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
 }

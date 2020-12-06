@@ -5,6 +5,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 public abstract class AbstractDao<T> implements GenericDao<T> {
@@ -27,21 +30,19 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
     }
 
     @Override
-    public void save(T entity) {
-        sessionFactory.getCurrentSession().save(entity);
-    }
-
-    @Override
-    public void update(T entity) {
-        sessionFactory.getCurrentSession().update(entity);
+    public void saveOrUpdate(T entity) {
+        sessionFactory.getCurrentSession().saveOrUpdate(entity);
     }
 
     @Override
     public List<T> list() {
-        final String hql = "from " + clazz.getName();
-        @SuppressWarnings("unchecked")
-        TypedQuery<T> query = sessionFactory.getCurrentSession().createQuery(hql);
+        CriteriaBuilder criteriaBuilder = sessionFactory.getCurrentSession().getCriteriaBuilder();
+        CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(clazz);
+        Root<T> rootEntry = criteriaQuery.from(clazz);
+        CriteriaQuery<T> list = criteriaQuery.select(rootEntry);
 
-        return query.getResultList();
+        TypedQuery<T> listQuery = sessionFactory.getCurrentSession().createQuery(list);
+
+        return listQuery.getResultList();
     }
 }
