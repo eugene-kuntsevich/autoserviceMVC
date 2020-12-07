@@ -51,7 +51,7 @@ public class MasterController {
         return ResponseEntity.ok().body("Master was updated");
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
     public ResponseEntity<MasterDto> get(@PathVariable("id") long id) {
         MasterDto masterDto = masterService.get(id);
 

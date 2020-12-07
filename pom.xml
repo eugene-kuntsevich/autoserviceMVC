@@ -23,9 +23,11 @@
     <mysql-connector-version>8.0.22</mysql-connector-version>
     <liquibase-version>4.2.0</liquibase-version>
     <spring-version>5.3.1</spring-version>
+    <spring-security-version>5.4.2</spring-security-version>
     <servlet-version>4.0.1</servlet-version>
     <jackson-version>2.12.0 </jackson-version>
     <mapper-version>2.3.9</mapper-version>
+    <json-version>20201115</json-version>
   </properties>
 
   <dependencies>
@@ -116,6 +118,21 @@
       <artifactId>spring-orm</artifactId>
       <version>${spring-version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>${spring-security-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>${spring-security-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>${spring-security-version}</version>
+    </dependency>
 
     <!-- SERVLET -->
     <dependency>
@@ -136,6 +153,13 @@
       <groupId>org.modelmapper</groupId>
       <artifactId>modelmapper</artifactId>
       <version>${mapper-version}</version>
+    </dependency>
+
+    <!-- JSON -->
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>${json-version}</version>
     </dependency>
   </dependencies>
 

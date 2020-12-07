@@ -1,10 +1,13 @@
 package org.autoservice.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class AdminDto {
     private long id;
     private String firstName;
     private String lastName;
     private String login;
+    @JsonIgnore
     private String password;
 
     public AdminDto() {
