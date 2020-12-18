@@ -7,16 +7,18 @@ public class OrderDto {
     private long id;
     private ClientDto client;
     private OrderStatusDto status;
+    private CarDto car;
     private Set<MasterDto> masters = new HashSet<>();
 
     public OrderDto() {
 
     }
 
-    public OrderDto(long id, ClientDto client, OrderStatusDto status) {
+    public OrderDto(long id, ClientDto client, OrderStatusDto status, CarDto car) {
         this.id = id;
         this.client = client;
         this.status = status;
+        this.car = car;
     }
 
     public long getId() {
@@ -35,6 +37,10 @@ public class OrderDto {
         return masters;
     }
 
+    public CarDto getCar() {
+        return car;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -49,5 +55,9 @@ public class OrderDto {
 
     public void setMasters(Set<MasterDto> masters) {
         this.masters = masters;
+    }
+
+    public void setCar(CarDto car) {
+        this.car = car;
     }
 }

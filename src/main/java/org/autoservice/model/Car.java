@@ -6,9 +6,6 @@ import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
-import javax.persistence.FetchType;
 import java.sql.Timestamp;
 
 @Entity
@@ -22,21 +19,16 @@ public class Car {
     @Column(name = "carNumber")
     private String carNumber;
 
-    @Column(name = "warrantyDate", nullable = true)
+    @Column(name = "warrantyDate")
     private Timestamp warrantyDate;
-
-    @ManyToOne(targetEntity = Client.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "clientId")
-    private Client client;
 
     public Car() {
 
     }
 
-    public Car(String carNumber, Timestamp warrantyDate, Client client) {
+    public Car(String carNumber, Timestamp warrantyDate) {
         this.carNumber = carNumber;
         this.warrantyDate = warrantyDate;
-        this.client = client;
     }
 
     public long getId() {
@@ -51,10 +43,6 @@ public class Car {
         return warrantyDate;
     }
 
-    public Client getClient() {
-        return client;
-    }
-
     public void setId(long id) {
         this.id = id;
     }
@@ -65,9 +53,5 @@ public class Car {
 
     public void setWarrantyDate(Timestamp warrantyDate) {
         this.warrantyDate = warrantyDate;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
     }
 }

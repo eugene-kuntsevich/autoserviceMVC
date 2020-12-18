@@ -6,17 +6,15 @@ public class CarDto {
     private long id;
     private String carNumber;
     private Timestamp warrantyDate;
-    private ClientDto client;
 
     public CarDto() {
 
     }
 
-    public CarDto(long id, String carNumber, Timestamp warrantyDate, ClientDto client) {
+    public CarDto(long id, String carNumber, Timestamp warrantyDate) {
         this.id = id;
         this.carNumber = carNumber;
         this.warrantyDate = warrantyDate;
-        this.client = client;
     }
 
     public long getId() {
@@ -31,10 +29,6 @@ public class CarDto {
         return warrantyDate;
     }
 
-    public ClientDto getClient() {
-        return client;
-    }
-
     public void setId(long id) {
         this.id = id;
     }
@@ -45,9 +39,5 @@ public class CarDto {
 
     public void setWarrantyDate(Timestamp warrantyDate) {
         this.warrantyDate = warrantyDate;
-    }
-
-    public void setClient(ClientDto client) {
-        this.client = client;
     }
 }

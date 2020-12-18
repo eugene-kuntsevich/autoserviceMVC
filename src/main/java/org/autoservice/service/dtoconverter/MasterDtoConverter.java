@@ -27,7 +27,7 @@ public class MasterDtoConverter extends AbstractDtoConverter<Master, MasterDto> 
         for(Order order : orders) {
             order.setMasters(new HashSet<>());
             OrderDto orderDto = orderDtoConverter.convertToDto(order);
-            orderDtos.add(new OrderDto(orderDto.getId(), orderDto.getClient(), orderDto.getStatus()));
+            orderDtos.add(new OrderDto(orderDto.getId(), orderDto.getClient(), orderDto.getStatus(), orderDto.getCar()));
         }
 
         masterDto.setOrders(orderDtos);

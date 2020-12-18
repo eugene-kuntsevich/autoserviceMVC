@@ -25,6 +25,10 @@ public class Order {
     @JoinColumn(name = "clientId")
     private Client client;
 
+    @ManyToOne(targetEntity = Car.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "carId")
+    private Car car;
+
     @ManyToOne(targetEntity = OrderStatus.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "statusId")
     private OrderStatus status;
@@ -36,9 +40,10 @@ public class Order {
 
     }
 
-    public Order(Client client, OrderStatus status) {
+    public Order(Client client, OrderStatus status, Car car) {
         this.client = client;
         this.status = status;
+        this.car = car;
     }
 
     public long getId() {
@@ -57,6 +62,10 @@ public class Order {
         return masters;
     }
 
+    public Car getCar() {
+        return car;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -71,5 +80,9 @@ public class Order {
 
     public void setMasters(Set<Master> masters) {
         this.masters = masters;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
     }
 }

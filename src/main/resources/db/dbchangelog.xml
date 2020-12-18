@@ -1,6 +1,7 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:pro="http://www.liquibase.org/xml/ns/pro"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
@@ -22,7 +23,7 @@
             <column name="login" type="VARCHAR(25)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="password" type="VARCHAR(25)">
+            <column name="password" type="VARCHAR(64)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -36,9 +37,6 @@
                 <constraints nullable="false"/>
             </column>
             <column name="warrantyDate" type="timestamp"/>
-            <column name="clientId" type="INT">
-                <constraints nullable="false"/>
-            </column>
         </createTable>
     </changeSet>
     <changeSet author="Sergey" id="3">
@@ -94,6 +92,9 @@
             <column name="statusId" type="INT">
                 <constraints nullable="false"/>
             </column>
+            <column name="carId" type="INT">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
     <changeSet author="Sergey" id="7">
@@ -107,43 +108,159 @@
         </createTable>
     </changeSet>
     <changeSet author="Sergey" id="8">
-        <createIndex indexName="car_fk0" tableName="car">
-            <column name="clientId"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="Sergey" id="9">
         <createIndex indexName="master_order_fk0" tableName="master_order">
             <column name="orderId"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Sergey" id="10">
+    <changeSet author="Sergey" id="9">
         <createIndex indexName="master_order_fk1" tableName="master_order">
             <column name="masterId"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Sergey" id="11">
+    <changeSet author="Sergey" id="10">
         <createIndex indexName="order_fk0" tableName="order">
             <column name="clientId"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Sergey" id="12">
+    <changeSet author="Sergey" id="11">
         <createIndex indexName="order_fk1" tableName="order">
             <column name="statusId"/>
         </createIndex>
     </changeSet>
-    <changeSet author="Sergey" id="13">
-        <addForeignKeyConstraint baseColumnNames="clientId" baseTableName="car" constraintName="car_fk0" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="client" validate="true"/>
+    <changeSet author="Sergey" id="12">
+        <createIndex indexName="order_fk2" tableName="order">
+            <column name="carId"/>
+        </createIndex>
     </changeSet>
-    <changeSet author="Sergey" id="14">
+    <changeSet author="Sergey" id="13">
         <addForeignKeyConstraint baseColumnNames="orderId" baseTableName="master_order" constraintName="master_order_fk0" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="order" validate="true"/>
     </changeSet>
-    <changeSet author="Sergey" id="15">
+    <changeSet author="Sergey" id="14">
         <addForeignKeyConstraint baseColumnNames="masterId" baseTableName="master_order" constraintName="master_order_fk1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="master" validate="true"/>
     </changeSet>
-    <changeSet author="Sergey" id="16">
+    <changeSet author="Sergey" id="15">
         <addForeignKeyConstraint baseColumnNames="clientId" baseTableName="order" constraintName="order_fk0" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="client" validate="true"/>
     </changeSet>
-    <changeSet author="Sergey" id="17">
+    <changeSet author="Sergey" id="16">
         <addForeignKeyConstraint baseColumnNames="statusId" baseTableName="order" constraintName="order_fk1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="order_status" validate="true"/>
+    </changeSet>
+    <changeSet author="Sergey" id="17">
+        <addForeignKeyConstraint baseColumnNames="carId" baseTableName="order" constraintName="order_fk2" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="car" validate="true"/>
+    </changeSet>
+    <changeSet author="Sergey" id="18">
+        <insert tableName="master">
+            <column name="id" value="1"/>
+            <column name="firstName" value="First"/>
+            <column name="lastName" value="Master"/>
+        </insert>
+        <insert tableName="master">
+            <column name="id" value="2"/>
+            <column name="firstName" value="Second"/>
+            <column name="lastName" value="Master"/>
+        </insert>
+        <insert tableName="master">
+            <column name="id" value="3"/>
+            <column name="firstName" value="Third"/>
+            <column name="lastName" value="Master"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Sergey" id="19">
+        <insert tableName="admin">
+            <column name="id" value="1"/>
+            <column name="firstName" value="Sergey"/>
+            <column name="lastName" value="Dmitruk"/>
+            <column name="login" value="admin"/>
+            <column name="password" value="$2y$12$G7iM/pWgiCHNT2h8zLtu0.hOtqF9hXT3XFYEXWDIKlJDZhpBZKM5q"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Sergey" id="20">
+        <insert tableName="car">
+            <column name="id" value="1"/>
+            <column name="carNumber" value="number1"/>
+            <column name="warrantyDate"/>
+        </insert>
+        <insert tableName="car">
+            <column name="id" value="2"/>
+            <column name="carNumber" value="number2"/>
+            <column name="warrantyDate"/>
+        </insert>
+        <insert tableName="car">
+            <column name="id" value="3"/>
+            <column name="carNumber" value="number3"/>
+            <column name="warrantyDate"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Sergey" id="21">
+        <insert tableName="client">
+            <column name="id" value="1"/>
+            <column name="firstName" value="First"/>
+            <column name="lastName" value="Client"/>
+            <column name="email" value="client1@mail.com"/>
+        </insert>
+        <insert tableName="client">
+            <column name="id" value="2"/>
+            <column name="firstName" value="Second"/>
+            <column name="lastName" value="Client"/>
+            <column name="email" value="client2@mail.com"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Sergey" id="22">
+        <insert tableName="order_status">
+            <column name="id" value="1"/>
+            <column name="name" value="Waiting"/>
+        </insert>
+        <insert tableName="order_status">
+            <column name="id" value="2"/>
+            <column name="name" value="In progress"/>
+        </insert>
+        <insert tableName="order_status">
+            <column name="id" value="3"/>
+            <column name="name" value="Stopped"/>
+        </insert>
+        <insert tableName="order_status">
+            <column name="id" value="4"/>
+            <column name="name" value="Done"/>
+        </insert>
+        <insert tableName="order_status">
+            <column name="id" value="5"/>
+            <column name="name" value="Handed over"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Sergey" id="23">
+        <insert tableName="order">
+            <column name="id" value="1"/>
+            <column name="clientId" value="1"/>
+            <column name="statusId" value="1"/>
+            <column name="carId" value="1"/>
+        </insert>
+        <insert tableName="order">
+            <column name="id" value="2"/>
+            <column name="clientId" value="1"/>
+            <column name="statusId" value="1"/>
+            <column name="carId" value="2"/>
+        </insert>
+        <insert tableName="order">
+            <column name="id" value="3"/>
+            <column name="clientId" value="2"/>
+            <column name="statusId" value="1"/>
+            <column name="carId" value="3"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Sergey" id="24">
+        <insert tableName="master_order">
+            <column name="id" value="1"/>
+            <column name="orderId" value="1"/>
+            <column name="masterId" value="1"/>
+        </insert>
+        <insert tableName="master_order">
+            <column name="id" value="2"/>
+            <column name="orderId" value="2"/>
+            <column name="masterId" value="1"/>
+        </insert>
+        <insert tableName="master_order">
+            <column name="id" value="3"/>
+            <column name="orderId" value="3"/>
+            <column name="masterId" value="3"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>
