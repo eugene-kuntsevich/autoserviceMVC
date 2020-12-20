@@ -15,35 +15,35 @@ public class MasterController {
     @Autowired
     private MasterService masterService;
 
-    @RequestMapping(value = "/free", method = RequestMethod.GET, headers = "Accept=application/json")
+    @GetMapping(value = "/free", headers = "Accept=application/json")
     public ResponseEntity<List<MasterDto>> free() {
         List<MasterDto> masters = masterService.getFreeMasters();
 
         return ResponseEntity.ok().body(masters);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET, headers = "Accept=application/json")
+    @GetMapping(value = "/", headers = "Accept=application/json")
     public ResponseEntity<List<MasterDto>> list() {
         List<MasterDto> masters = masterService.list();
 
         return ResponseEntity.ok().body(masters);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @PostMapping(value = "/")
     public ResponseEntity<?> save(@RequestBody MasterDto masterDto) throws ValidatorException {
         masterService.saveOrUpdate(masterDto);
 
         return ResponseEntity.ok().body("New master added");
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") long id) {
         masterService.delete(id);
 
         return ResponseEntity.ok().body("Master was deleted");
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @PutMapping(value = "/{id}")
     public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody MasterDto masterDto) throws ValidatorException {
         masterDto.setId(id);
         masterService.saveOrUpdate(masterDto);
@@ -51,7 +51,7 @@ public class MasterController {
         return ResponseEntity.ok().body("Master was updated");
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
+    @GetMapping(value = "/{id}", headers = "Accept=application/json")
     public ResponseEntity<MasterDto> get(@PathVariable("id") long id) {
         MasterDto masterDto = masterService.get(id);
 

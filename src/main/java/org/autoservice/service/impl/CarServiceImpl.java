@@ -34,4 +34,9 @@ public class CarServiceImpl extends AbstractService<Car, CarDto> implements CarS
     public List<CarDto> getCarsWithWarranty() {
         return carDtoConverter.convertListToDto(carDao.getCarsWithWarranty());
     }
+
+    @Override
+    public List<CarDto> getCarsByStatusId(long id) {
+        return carDtoConverter.convertListToDto(carDao.getCarsByStatusId(id));
+    }
 }
