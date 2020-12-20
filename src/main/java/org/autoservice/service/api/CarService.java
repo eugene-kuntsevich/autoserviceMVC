@@ -1,6 +1,6 @@
 package org.autoservice.service.api;
 
-import org.autoservice.model.Car;
+import org.autoservice.model.entity.Car;
 import org.autoservice.service.dto.CarDto;
 
 import java.util.List;

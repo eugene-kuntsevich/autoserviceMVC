@@ -1,6 +1,6 @@
 package org.autoservice.service.api;
 
-import org.autoservice.model.Master;
+import org.autoservice.model.entity.Master;
 import org.autoservice.service.dto.MasterDto;
 
 import java.util.List;

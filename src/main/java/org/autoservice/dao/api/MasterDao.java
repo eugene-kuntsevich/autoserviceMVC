@@ -1,6 +1,6 @@
 package org.autoservice.dao.api;
 
-import org.autoservice.model.Master;
+import org.autoservice.model.entity.Master;
 
 import java.util.List;
 

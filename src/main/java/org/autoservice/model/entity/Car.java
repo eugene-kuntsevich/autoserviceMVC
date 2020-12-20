@@ -1,10 +1,9 @@
-package org.autoservice.model;
+package org.autoservice.model.entity;
+
+import org.autoservice.model.AbstractPersistableEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.OneToMany;
 import java.sql.Timestamp;
@@ -12,12 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "car")
-public class Car {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private long id;
-
+public class Car extends AbstractPersistableEntity {
     @Column(name = "carNumber")
     private String carNumber;
 
@@ -37,10 +31,6 @@ public class Car {
         this.orders = orders;
     }
 
-    public long getId() {
-        return id;
-    }
-
     public String getCarNumber() {
         return carNumber;
     }
@@ -51,10 +41,6 @@ public class Car {
 
     public Set<Order> getOrders() {
         return orders;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public void setCarNumber(String carNumber) {

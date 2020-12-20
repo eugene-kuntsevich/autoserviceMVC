@@ -2,7 +2,7 @@ package org.autoservice.dao.impl;
 
 import org.autoservice.dao.AbstractDao;
 import org.autoservice.dao.api.MasterDao;
-import org.autoservice.model.Master;
+import org.autoservice.model.entity.Master;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;

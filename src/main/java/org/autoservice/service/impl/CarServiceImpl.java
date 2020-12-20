@@ -1,7 +1,7 @@
 package org.autoservice.service.impl;
 
 import org.autoservice.dao.api.CarDao;
-import org.autoservice.model.Car;
+import org.autoservice.model.entity.Car;
 import org.autoservice.service.AbstractService;
 import org.autoservice.service.api.CarService;
 import org.autoservice.service.dto.CarDto;

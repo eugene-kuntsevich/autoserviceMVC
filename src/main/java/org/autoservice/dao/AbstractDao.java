@@ -1,6 +1,7 @@
 package org.autoservice.dao;
 
 import org.autoservice.dao.api.GenericDao;
+import org.autoservice.model.AbstractPersistableEntity;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,7 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-public abstract class AbstractDao<T> implements GenericDao<T> {
+public abstract class AbstractDao<T extends AbstractPersistableEntity> implements GenericDao<T> {
     @Autowired
     protected SessionFactory sessionFactory;
     private Class<T> clazz;

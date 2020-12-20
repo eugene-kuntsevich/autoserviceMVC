@@ -1,6 +1,6 @@
 package org.autoservice.service.dtoconverter;
 
-import org.autoservice.model.Client;
+import org.autoservice.model.entity.Client;
 import org.autoservice.service.dto.ClientDto;
 import org.springframework.stereotype.Service;
 

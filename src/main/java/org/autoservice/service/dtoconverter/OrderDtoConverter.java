@@ -1,7 +1,7 @@
 package org.autoservice.service.dtoconverter;
 
-import org.autoservice.model.Master;
-import org.autoservice.model.Order;
+import org.autoservice.model.entity.Master;
+import org.autoservice.model.entity.Order;
 import org.autoservice.service.dto.MasterDto;
 import org.autoservice.service.dto.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;

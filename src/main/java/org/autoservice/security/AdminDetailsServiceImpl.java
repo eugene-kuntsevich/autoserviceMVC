@@ -1,7 +1,7 @@
 package org.autoservice.security;
 
 import org.autoservice.dao.api.AdminDao;
-import org.autoservice.model.Admin;
+import org.autoservice.model.entity.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;

@@ -2,7 +2,7 @@ package org.autoservice.dao.impl;
 
 import org.autoservice.dao.AbstractDao;
 import org.autoservice.dao.api.OrderDao;
-import org.autoservice.model.Order;
+import org.autoservice.model.entity.Order;
 import org.springframework.stereotype.Repository;
 
 @Repository

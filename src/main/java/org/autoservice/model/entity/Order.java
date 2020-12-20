@@ -1,11 +1,9 @@
-package org.autoservice.model;
+package org.autoservice.model.entity;
+
+import org.autoservice.model.AbstractPersistableEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Column;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
@@ -15,12 +13,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "`order`")
-public class Order {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private long id;
-
+public class Order extends AbstractPersistableEntity {
     @ManyToOne(targetEntity = Client.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "clientId")
     private Client client;
@@ -46,10 +39,6 @@ public class Order {
         this.car = car;
     }
 
-    public long getId() {
-        return id;
-    }
-
     public Client getClient() {
         return client;
     }
@@ -64,10 +53,6 @@ public class Order {
 
     public Car getCar() {
         return car;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public void setClient(Client client) {

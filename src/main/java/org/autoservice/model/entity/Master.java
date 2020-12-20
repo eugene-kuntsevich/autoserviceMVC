@@ -1,10 +1,9 @@
-package org.autoservice.model;
+package org.autoservice.model.entity;
+
+import org.autoservice.model.AbstractPersistableEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.ManyToMany;
 import javax.persistence.CascadeType;
@@ -16,12 +15,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "master")
-public class Master {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private long id;
-
+public class Master extends AbstractPersistableEntity {
     @Column(name = "firstName")
     private String firstName;
 
@@ -30,7 +24,7 @@ public class Master {
 
     @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     @JoinTable(
-            name = "Master_Order",
+            name = "master_order",
             joinColumns = { @JoinColumn(name = "masterId") },
             inverseJoinColumns = { @JoinColumn(name = "orderId") }
     )
@@ -45,10 +39,6 @@ public class Master {
         this.lastName = lastName;
     }
 
-    public long getId() {
-        return id;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -59,10 +49,6 @@ public class Master {
 
     public Set<Order> getOrders() {
         return orders;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public void setFirstName(String firstName) {

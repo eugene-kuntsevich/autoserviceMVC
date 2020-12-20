@@ -2,8 +2,8 @@ package org.autoservice.dao.impl;
 
 import org.autoservice.dao.AbstractDao;
 import org.autoservice.dao.api.CarDao;
-import org.autoservice.model.Car;
-import org.autoservice.model.Order;
+import org.autoservice.model.entity.Car;
+import org.autoservice.model.entity.Order;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;

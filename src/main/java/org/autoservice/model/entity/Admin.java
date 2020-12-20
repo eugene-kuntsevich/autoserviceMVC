@@ -1,20 +1,14 @@
-package org.autoservice.model;
+package org.autoservice.model.entity;
+
+import org.autoservice.model.AbstractPersistableEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Column;
 
 @Entity
 @Table(name = "admin")
-public class Admin {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private long id;
-
+public class Admin extends AbstractPersistableEntity {
     @Column(name = "firstName")
     private String firstName;
 
@@ -38,10 +32,6 @@ public class Admin {
         this.password = password;
     }
 
-    public long getId() {
-        return id;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -56,10 +46,6 @@ public class Admin {
 
     public String getPassword() {
         return password;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public void setFirstName(String firstName) {

@@ -1,8 +1,8 @@
 package org.autoservice.service.dtoconverter;
 
-import org.autoservice.model.Car;
-import org.autoservice.model.Order;
-import org.autoservice.model.OrderStatus;
+import org.autoservice.model.entity.Car;
+import org.autoservice.model.entity.Order;
+import org.autoservice.model.entity.OrderStatus;
 import org.autoservice.service.dto.CarDto;
 import org.autoservice.service.dto.OrderStatusDto;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package org.autoservice.service.dtoconverter;
 
-import org.autoservice.model.OrderStatus;
+import org.autoservice.model.entity.OrderStatus;
 import org.autoservice.service.dto.OrderStatusDto;
 import org.springframework.stereotype.Service;
 

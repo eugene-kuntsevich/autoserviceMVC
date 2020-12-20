@@ -1,7 +1,7 @@
 package org.autoservice.service.impl;
 
 import org.autoservice.dao.api.OrderDao;
-import org.autoservice.model.Order;
+import org.autoservice.model.entity.Order;
 import org.autoservice.service.AbstractService;
 import org.autoservice.service.api.OrderService;
 import org.autoservice.service.dto.OrderDto;

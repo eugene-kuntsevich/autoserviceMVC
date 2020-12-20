@@ -1,7 +1,7 @@
 package org.autoservice.service.impl;
 
 import org.autoservice.dao.api.MasterDao;
-import org.autoservice.model.Master;
+import org.autoservice.model.entity.Master;
 import org.autoservice.service.AbstractService;
 import org.autoservice.service.api.MasterService;
 import org.autoservice.service.dto.MasterDto;

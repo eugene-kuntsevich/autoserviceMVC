@@ -1,6 +1,6 @@
 package org.autoservice.dao.api;
 
-import org.autoservice.model.Car;
+import org.autoservice.model.entity.Car;
 
 import java.util.List;
 
