@@ -9,5 +9,4 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 @ComponentScan("org.autoservice.controller")
 public class WebMvcConfig implements WebMvcConfigurer {
-
 }

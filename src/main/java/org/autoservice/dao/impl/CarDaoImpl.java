@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Subquery;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
@@ -38,7 +39,7 @@ public class CarDaoImpl extends AbstractDao<Car> implements CarDao {
         CriteriaQuery<Car> criteriaQuery = criteriaBuilder.createQuery(Car.class);
         Root<Car> rootEntry = criteriaQuery.from(Car.class);
 
-        criteriaQuery.where(criteriaBuilder.notEqual(rootEntry.get("warranty"), null));
+        criteriaQuery.where(criteriaBuilder.lessThan(rootEntry.get("warranty"), new Timestamp(System.currentTimeMillis())));
 
         TypedQuery<Car> getCarsWithWarrantyQuery = sessionFactory.getCurrentSession().createQuery(criteriaQuery);
 
