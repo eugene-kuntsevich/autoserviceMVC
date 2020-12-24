@@ -10,6 +10,8 @@ import org.autoservice.service.validators.CarValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -25,6 +27,14 @@ public class CarServiceImpl extends AbstractService<Car, CarDto> implements CarS
         this.carDtoConverter = carDtoConverter;
     }
 
+    private Timestamp addDays(Timestamp date, int days) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DATE, days);
+
+        return new Timestamp(calendar.getTime().getTime());
+    }
+
     @Override
     public CarDto getCarByNumber(String number) {
         return carDtoConverter.convertToDto(carDao.getCarByNumber(number));
@@ -38,5 +48,12 @@ public class CarServiceImpl extends AbstractService<Car, CarDto> implements CarS
     @Override
     public List<CarDto> getCarsByStatusId(long id) {
         return carDtoConverter.convertListToDto(carDao.getCarsByStatusId(id));
+    }
+
+    @Override
+    public void setWarranty(long id) {
+        Car car = carDao.get(id);
+
+        car.setWarrantyDate(addDays(new Timestamp(System.currentTimeMillis()), 30));
     }
 }

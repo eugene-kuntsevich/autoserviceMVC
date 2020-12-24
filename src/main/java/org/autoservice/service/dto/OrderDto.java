@@ -1,5 +1,10 @@
 package org.autoservice.service.dto;
 
+import org.autoservice.service.dto.CarDto;
+import org.autoservice.service.dto.ClientDto;
+import org.autoservice.service.dto.MasterDto;
+import org.autoservice.service.dto.OrderStatusDto;
+
 import java.util.HashSet;
 import java.util.Set;
 
